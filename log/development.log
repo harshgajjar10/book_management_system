@@ -1,0 +1,77 @@
+Started GET "/users/sign_in" for ::1 at 2022-03-09 17:59:28 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering /home/harsh-g/.rvm/gems/ruby-3.0.2@book_management_system/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/harsh-g/.rvm/gems/ruby-3.0.2@book_management_system/gems/devise-4.8.1/app/views/devise/shared/_links.html.erb (Duration: 2.2ms | Allocations: 903)
+  Rendered /home/harsh-g/.rvm/gems/ruby-3.0.2@book_management_system/gems/devise-4.8.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 31.8ms | Allocations: 9980)
+  Rendered layouts/_messages.html.erb (Duration: 1.0ms | Allocations: 223)
+  Rendered layout layouts/application.html.erb (Duration: 36.6ms | Allocations: 11149)
+Completed 200 OK in 93ms (Views: 52.1ms | ActiveRecord: 6.1ms | Allocations: 25698)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-03-09 18:00:08 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"admin@bookmanagement.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "admin@bookmanagement.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 366ms (ActiveRecord: 1.3ms | Allocations: 8768)
+
+
+Started GET "/" for ::1 at 2022-03-09 18:00:09 +0530
+Processing by BooksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mRole Load (0.9ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  [1m[36mBook Load (1.3ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY updated_at DESC[0m
+  ↳ app/views/books/index.html.erb:30:in `each_with_index'
+  [1m[36mAuthor Load (0.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/books/index.html.erb:34
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "books_categories" ON "categories"."id" = "books_categories"."category_id" WHERE "books_categories"."book_id" = $1[0m  [["book_id", 2]]
+  ↳ app/views/books/index.html.erb:37
+  [1m[36mCACHE Role Load (0.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  [1m[36mAuthor Load (0.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/books/index.html.erb:34
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "books_categories" ON "categories"."id" = "books_categories"."category_id" WHERE "books_categories"."book_id" = $1[0m  [["book_id", 1]]
+  ↳ app/views/books/index.html.erb:37
+  [1m[36mCACHE Role Load (0.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  [1m[36mRole Load (0.5ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/books/index.html.erb:55
+  Rendered books/index.html.erb within layouts/application (Duration: 112.6ms | Allocations: 45640)
+  Rendered layouts/_messages.html.erb (Duration: 0.2ms | Allocations: 48)
+  [1m[36mCACHE Role Load (0.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  [1m[36mCACHE Role Load (0.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  Rendered layouts/_user_header.html.erb (Duration: 5.0ms | Allocations: 1941)
+  Rendered layout layouts/application.html.erb (Duration: 119.9ms | Allocations: 48207)
+Completed 200 OK in 160ms (Views: 102.5ms | ActiveRecord: 24.8ms | Allocations: 62030)
+
+
+Started GET "/books/new" for ::1 at 2022-03-09 18:00:13 +0530
+Processing by BooksController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering books/new.html.erb within layouts/application
+  [1m[36mRole Load (0.7ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  [1m[36mAuthor Load (0.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" ORDER BY "authors"."name" ASC[0m
+  ↳ app/views/books/_form.html.erb:27
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/books/_form.html.erb:34
+  Rendered books/_form.html.erb (Duration: 26.4ms | Allocations: 7695)
+  Rendered books/new.html.erb within layouts/application (Duration: 28.9ms | Allocations: 7982)
+  Rendered layouts/_messages.html.erb (Duration: 0.1ms | Allocations: 35)
+  [1m[36mCACHE Role Load (0.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  [1m[36mCACHE Role Load (0.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = $1 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/helpers/application_helper.rb:3:in `admin?'
+  Rendered layouts/_user_header.html.erb (Duration: 4.3ms | Allocations: 1560)
+  Rendered layout layouts/application.html.erb (Duration: 34.6ms | Allocations: 9990)
+Completed 200 OK in 40ms (Views: 33.7ms | ActiveRecord: 2.1ms | Allocations: 11764)
+
+

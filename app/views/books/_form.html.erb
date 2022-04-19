@@ -1,0 +1,43 @@
+<%= form_with(model: book) do |form|%>
+  <% if admin? %>
+    <div class="form-group row">
+      <%= form.label :name, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-7">
+        <%= form.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <%= form.label :description, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-7">
+        <%= form.text_area :description, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <%= form.label :publish_at, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-7">
+        <%= form.date_select :publish_at, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <%= form.label :author, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-7">
+        <%= form.collection_select :author_id, order_authors_by_name, :id, :name, { prompt: "Choose Author" }, {class: 'form-control'} %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <%= form.label 'Category', class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-7">
+        <%= form.collection_select(:category_ids, order_categories_by_name, :id, :name, {}, {:multiple =>true, class: 'form-control'}) %>
+      </div>
+    </div>
+    <br>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+      <%= link_to 'Cancel', books_path, class:"btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

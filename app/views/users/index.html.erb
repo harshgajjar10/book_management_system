@@ -1,0 +1,18 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= 'UserEmail' %></th>
+      <th><%= 'UserRole' %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each_with_index do |user,index| %>
+      <tr>
+        <%= page_index(params[:page], index) %>
+        <td><%= user.email %></td>
+        <td><%= user.roles[0].name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

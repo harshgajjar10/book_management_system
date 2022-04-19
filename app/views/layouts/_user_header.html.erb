@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto my-2 my-lg-0">
+        <li class="nav-item">
+          <strong><%= link_to 'Home', root_path, class: "nav-link" %></strong>
+        </li>
+        <% if admin? %>
+          <li class="nav-item">
+            <strong><%= link_to 'Users',users_path, class: "nav-link" %></strong>
+          </li>
+          <li class="nav-item">
+            <strong><%= link_to 'Authors', authors_path, class: "nav-link"  %></strong>
+          </li>
+          <li class="nav-item">
+            <strong><%= link_to 'Categories', categories_path, class: "nav-link" %></strong>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <strong><div class="user-name-hi"><%= 'Hello' %>,</div> <%= current_user.email %> </strong> &ensp;
+    <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-sm'  do %>
+      Logout
+    <% end %>
+  </div>
+</nav>
+
+<% if admin? %>
+  <h2 class= 'text-center' style= 'background-color: lightblue'>Admin Dashboard</h2><br/>
+<% else %>
+  <h2 class= 'text-center' style= 'background-color: lightblue'>User Dashboard</h2>
+<% end %>

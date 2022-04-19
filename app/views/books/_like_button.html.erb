@@ -1,0 +1,7 @@
+<div class="like-icon mx-2 <%='red' if current_user.favorited?(book) %>" data-id="<%= book.id %>">
+  <% unless current_user.favorited?(book) %>
+    Like
+  <% else %>
+    Dislike
+  <% end %>
+</div>

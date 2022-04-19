@@ -1,0 +1,25 @@
+<% if user_signed_in? %>
+  <% if admin? %>
+    <%= link_to new_category_path, class: "btn btn-outline-primary" do %>
+      <% 'New Category' %>
+    <% end %>
+  <% end %>
+  <br>
+  <br>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th><%= 'Category Type' %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each_with_index do |category,index| %>
+        <tr>
+          <%= page_index(params[:page], index) %>
+          <td><%= category.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

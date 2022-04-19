@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Dashboard</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/messages'%>
+    <% if user_signed_in? %>
+      <%= render 'layouts/user_header'%>
+    <% end %>
+    <% unless user_signed_in? %>
+    <% end %>
+    <main class="col-md-9 ms-sm-auto col-lg-12 px-md-4">
+      <br>
+      <%= yield %>
+    </main>
+  </body>
+</html>

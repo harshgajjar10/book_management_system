@@ -1,0 +1,14 @@
+<div class="book" data-id="<%= book.id %>">
+  <% if user_signed_in? %>
+    <table class="table table-bordered table-hover">
+      <tbody>
+        <tr>
+          <td><%= book.name %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.description %></td>
+          <td><%= book.publish_at.to_date %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
